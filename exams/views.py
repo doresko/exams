@@ -57,6 +57,7 @@ def task(request, problem_slug):
             instance.user=request.user
             instance.problem=problem
             instance.save()
+            messages.success(request, 'Sikeres Beküldés')
     else:
         form = SnippetForm()
     return render(request, "detail.html", {

@@ -68,6 +68,13 @@
       {{ source }}
     {% endfor %}
   </div>
+
+{% if messages %}
+    {% for message in messages %}
+      <p class="{{ message.tags }} text-success text-center">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
   <div class="sidebar">
     <form action="" method="post">
       <div class="p-1 text-right">
@@ -96,6 +103,18 @@
     </form>
   </div>
 </div>
-  {% load static %}
-  <script src="{% static 'js/when-ace-loaded.js' %}"></script>
+<script>
+  document.getElementById("id_text").style.display = "none";
+  var editor = ace.edit("editor");
+  editor.getSession().setMode("ace/mode/python");
+  {% if request.COOKIES.theme == 'dark' %}
+    editor.setTheme("ace/theme/dracula");
+  {% else %}
+    editor.setTheme("ace/theme/xcode");
+  {% endif %}
+  function Submit() {
+    document.getElementById('id_text').value = editor.getValue();
+  }     
+</script>
+
 {% endblock %}

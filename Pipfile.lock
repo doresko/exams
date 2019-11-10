@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "bcac53b8e888b322594859b41f549df69e103fffd40c2e3c26576f98d2bdce94"
+            "sha256": "1940ed9f7cee6e4dac2570c28acd42ecfc9f2ff9c1a59a9512c22b4aa26a7c09"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -24,14 +24,6 @@
             "index": "pypi",
             "version": "==2.2.7"
         },
-        "django-extensions": {
-            "hashes": [
-                "sha256:a9db7c56a556d244184f589f2437b4228de86ee45e5ebb837fb20c6d54e95ea5",
-                "sha256:b58320d3fe3d6ae7d1d8e38959713fa92272f4921e662d689058d942a5b444f7"
-            ],
-            "index": "pypi",
-            "version": "==2.2.5"
-        },
         "django-js-asset": {
             "hashes": [
                 "sha256:8ec12017f26eec524cab436c64ae73033368a372970af4cf42d9354fcb166bdd",
@@ -47,42 +39,12 @@
             "index": "pypi",
             "version": "==0.10.0"
         },
-        "pydot": {
-            "hashes": [
-                "sha256:67be714300c78fda5fd52f79ec994039e3f76f074948c67b5ff539b433ad354f",
-                "sha256:d49c9d4dd1913beec2a997f831543c8cbd53e535b1a739e921642fe416235f01"
-            ],
-            "index": "pypi",
-            "version": "==1.4.1"
-        },
-        "pygraphviz": {
-            "hashes": [
-                "sha256:50a829a305dc5a0fd1f9590748b19fece756093b581ac91e00c2c27c651d319d"
-            ],
-            "index": "pypi",
-            "version": "==1.5"
-        },
-        "pyparsing": {
-            "hashes": [
-                "sha256:6f98a7b9397e206d78cc01df10131398f1c8b8510a2f4d97d9abd82e1aacdd80",
-                "sha256:d9338df12903bbf5d65a0e4e87c2161968b10d2e489652bb47001d82a9b028b4"
-            ],
-            "index": "pypi",
-            "version": "==2.4.2"
-        },
         "pytz": {
             "hashes": [
                 "sha256:1c557d7d0e871de1f5ccd5833f60fb2550652da6be2693c1e02300743d21500d",
                 "sha256:b02c06db6cf09c12dd25137e563b31700d3b80fcc4ad23abb7a315f2789819be"
             ],
             "version": "==2019.3"
-        },
-        "six": {
-            "hashes": [
-                "sha256:3350809f0555b11f552448330d0b52d5f24c91a322ea4a15ef22629740f3761c",
-                "sha256:d16a0141ec1a18405cd4ce8b4613101da75da0e9a7aec5bdd4fa804d0e0eba73"
-            ],
-            "version": "==1.12.0"
         },
         "sqlparse": {
             "hashes": [

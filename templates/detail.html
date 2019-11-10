@@ -45,7 +45,7 @@
       {% if member.id == problem.id %}
         <li class="breadcrumb-item active" aria-current="page">{{ member }}</li>
       {% else %}
-      <li class="breadcrumb-item"><a href="{% url 'task' member.slug  %}">{{ member }}</a></li>
+      <li class="breadcrumb-item"><a class="text-success" href="{% url 'task' member.slug  %}">{{ member }}</a></li>
       {% endif %}
     {% endfor %}
   </ol>

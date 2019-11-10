@@ -73,7 +73,7 @@
           </p>
         </div>
         <div class="card-footer">
-          <a href="{% url 'task' problem.slug  %}">{{ problem.title }}</a>
+          <a class="text-success" title={{ problem.slug }} href="{% url 'task' problem.slug  %}">Ugrás a feladathoz!</a>
         </div>
       </div>
     {% endfor %}

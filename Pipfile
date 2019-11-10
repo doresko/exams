@@ -8,10 +8,6 @@ verify_ssl = true
 [packages]
 django = "*"
 django-mptt = "*"
-pygraphviz = "*"
-django-extensions = "*"
-pyparsing = "*"
-pydot = "*"
 
 [requires]
 python_version = "3.6"

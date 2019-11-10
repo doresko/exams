@@ -1,0 +1,27 @@
+.level{
+  background-color: #DD09C3;
+  color: white;
+}
+
+.skill{
+  background-color: #891EAE;
+  color: white;
+}
+
+.tag{
+  background-color: #482E9E;
+  color: white;
+}
+
+.sidebar{
+  background-color: #282A36;
+  margin: 0px;
+}
+
+.card-footer a{
+  color: #00d2ff;
+}
+
+.card-footer a:hover{
+  color: #00d2ff;
+}

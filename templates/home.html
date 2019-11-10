@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block extra_head_tags %}
+  <title>Feladatok</title>
+  <meta name="description" content="Elemi programozás feladatok gyűjteménye középiskolás diákok számára">
+  <meta name="keywords" content="{{ tags|join:"," }},{{ skills|join:","}}">
+  <meta name="author" content="PTE TTK">
+{% endblock extra_head_tags %}
+{% block content %}
+<div class ="nav">
+  <a class="navbar-brand pl-4 pt-2 pb-1" href="/">PyCode</a>
+  <ul class="nav justify-content-end">
+  <li class="nav-item">
+    <form class="searchbox" action="{% url 'search_results' %}" method="get">
+      <input class="searchfield" name="q" type="text" placeholder="Keresés...">
+    </form>
+  </li>
+  {% if user.is_authenticated %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Üdv {{user.get_username}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/">Főoldal</a>
+      <a class="dropdown-item" href="/preferences">Beállítások</a>
+      <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/accounts/logout" class="btn btn-outline-info btn-block">Kijelentkezés</a>
+      </div>
+    </div>
+  </li>
+  {% else %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Üdv Látogató
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/">Főoldal</a>
+      <a class="dropdown-item" href="/preferences">Beállítások</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/accounts/login" class="btn btn-outline-info btn-block">Bejelentkezés</a>
+      <a class="dropdown-item" href="/accounts/register" class="btn btn-outline-info btn-block">Regisztráció</a>
+      </div>
+    </div>
+  </li>
+  {% endif %}
+  </ul>
+</div>
+<div class="home">
+  {% if object_list %}
+  <div class="card-pack m-3">
+    {% for problem in object_list %}
+      <div class="cards">
+        <div class="card-body">
+          <h1 class="card-title">
+            {{ problem.title }}
+          </h1>
+          <h2> Szint:
+            {% for level in problem.levels.all %}
+              <span class="badge level mt-1">{{ level }}</span>
+            {% endfor %}
+          </h2>
+          <h2> Képességek:
+            {% for skill in problem.skills.all %}
+              <span class="badge skill mt-1">{{ skill }}</span>
+            {% endfor %}
+          </h2>
+          <h2> Kulcsszavak:
+            {% for tag in problem.tags.all %}
+              <span class="badge tag mt-1">{{ tag }}</span>
+            {% endfor %}
+          </h2>
+          <p class="card-text">
+            {{ problem.short_description}}
+          </p>
+        </div>
+        <div class="card-footer">
+          <a href="{% url 'task' problem.slug  %}">{{ problem.title }}</a>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+    <nav aria-label="Page navigation example">
+      <ul class="pagination justify-content-center">
+          {% for page in object_list.paginator.page_range %}
+            {% if page == object_list.number %}
+            <li class="page-item disabled">
+              <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+            </li>
+            {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ page }}">{{ page }}</a>
+            </li>
+            {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+  {% else %}
+  <div class="text-center">
+      <p class="notfoundmessage">Nem találtunk a keresésnek megfelelő elemet</p>
+  </div>
+  {% endif %}
+</div>
+{% endblock %}

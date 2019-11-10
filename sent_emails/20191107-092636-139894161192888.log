@@ -1,0 +1,25 @@
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: 7bit
+Subject: Password reset on example.com
+From: webmaster@localhost
+To: oresko@gamma.ttk.pte.hu
+Date: Thu, 07 Nov 2019 09:26:36 -0000
+Message-ID: <157311879691.2311.7421426174028651697@oresko-GL62M-7RC>
+
+
+You're receiving this email because you requested a password reset for your user account at example.com.
+
+Please go to the following page and choose a new password:
+
+http://example.com/accounts/reset/confirm/MTQ/5b8-a26fa9952a2308ffe3fe/
+
+Your username, in case you've forgotten: oresko_teacher
+
+Thanks for using our site!
+
+The example.com team
+
+
+
+-------------------------------------------------------------------------------

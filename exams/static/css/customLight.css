@@ -1,0 +1,31 @@
+.level{
+  background-color: #F45E84;
+  color: black;
+}
+
+.skill{
+  background-color: #B26FBD;
+  color: black;
+}
+
+.tag{
+  background-color: #787EEF;
+  color: black;
+}
+
+.sidebar{
+  background-color: #E8E8E8;
+  margin: 0px;
+}
+
+.ace_scroller{
+  background-color: #eeeeee;
+}
+
+.card-footer a{
+  color: #004e92;
+}
+
+.card-footer a:hover{
+  color: #004e92;
+}

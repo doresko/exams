@@ -1,0 +1,211 @@
+
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url(https://fonts.gstatic.com/s/pacifico/v12/FwZY7-Qmy14u9lezJ-6H6MmBp0u-.woff2) format('woff2');
+  font-display: swap;
+}
+
+.nav{
+  padding: 5px;
+  background-color: #303030;
+  display: flex;
+  justify-content: center;
+}
+
+.card-pack{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.cards{
+  margin: 10px;
+  border: 1px solid grey;
+  border-radius: 5px;
+  width: 500px;
+  height: 400px;
+  position: relative;
+}
+
+.card-footer{
+  position: absolute;
+  width: 100%;
+  bottom: 0px;
+}
+
+.detail-body{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
+  padding: 30px;
+}
+
+.searchbox{
+  margin: auto;
+  padding-right: 15px;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+
+.searchfield{
+  border: 1px solid;
+  border-color: white;
+  border-radius: .25rem;
+  padding: 4px;
+}
+
+.navbar-brand{
+  margin-right:auto !important;
+}
+
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+  margin: 0 auto;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.messages{
+  list-style-type: none;
+	color:red;
+	text-align: center;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #2196f3;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 40px;
+  width: 40px;
+  left: 0px;
+  bottom: 4px;
+  top: 0;
+  bottom: 0;
+  margin: auto 0;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  box-shadow: 0 0px 15px #2020203d;
+  background: white url('https://i.ibb.co/7JfqXxB/sunny.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+input:checked + .slider {
+  background-color: #ccc;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196f3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(24px);
+  -ms-transform: translateX(24px);
+  transform: translateX(24px);
+  background: white url('https://i.ibb.co/FxzBYR9/night.png');
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.main{
+  width: 80%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+}
+
+.cards h1{
+  font-size: 35px;
+}
+
+.cards h2{
+  font-size: 18px;
+}
+
+.notfound{
+  position: relative;
+  height: 90%;
+}
+
+.notfoundmessage{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.card{
+	width: 60%;
+	max-width: 28rem;
+}
+
+.errorlist{
+	display: none;
+}
+
+.jumbotron{
+	width: 80%;
+}
+
+#editor { 
+  position: relative;
+  height: 300px;
+  font-size: 14px;
+}
+
+#id_old_password, #id_new_password1, #id_new_password2{
+  border: 1px solid;
+  border-radius: .25rem;
+  padding: 4px;
+  padding-left: 7px;
+ }
+
+ .main h1{
+   font-size: 35px;
+ }
+
+ .main h2, .card h1{
+   font-size: 25px;
+ }

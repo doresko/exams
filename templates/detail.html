@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% block extra_head_tags %}
+  <title>{{ problem.title }}</title>
+  <meta name="description" content="{{ problem.short_description }}">
+  <meta name="keywords" content="{{ problem.tags.all|join:"," }},{{ problem.skills.all|join:","}}">
+  <meta name="author" content="{{ problem.creator }}">
+{% endblock extra_head_tags %}
+{% block content %}
+<div class ="nav">
+  <a class="navbar-brand pl-4 pt-2 pb-1" href="/">PyCode</a>
+  <ul class="nav justify-content-end">
+  {% if user.is_authenticated %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Üdv {{user.get_username}}
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/">Főoldal</a>
+      <a class="dropdown-item" href="/preferences">Beállítások</a>
+      <div class="dropdown-divider"></div>
+        <a class="dropdown-item" href="/accounts/logout" class="btn btn-outline-info btn-block">Kijelentkezés</a>
+      </div>
+    </div>
+  </li>
+  {% else %}
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Üdv Látogató
+    </a>
+    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+      <a class="dropdown-item" href="/">Főoldal</a>
+      <a class="dropdown-item" href="/preferences">Beállítások</a>
+      <div class="dropdown-divider"></div>
+      <a class="dropdown-item" href="/accounts/login" class="btn btn-outline-info btn-block">Bejelentkezés</a>
+      <a class="dropdown-item" href="/accounts/register" class="btn btn-outline-info btn-block">Regisztráció</a>
+      </div>
+    </div>
+  </li>
+  {% endif %}
+  </ul>
+</div>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb d-flex justify-content-center rounded-0">
+    {% for member in family %}
+      {% if member.id == problem.id %}
+        <li class="breadcrumb-item active" aria-current="page">{{ member }}</li>
+      {% else %}
+      <li class="breadcrumb-item"><a href="{% url 'task' member.slug  %}">{{ member }}</a></li>
+      {% endif %}
+    {% endfor %}
+  </ol>
+</nav>
+<div class="detail-body">
+  <h1>
+    {{ problem.title }}
+  </h1>
+  <div class="text-justify">
+    {{ problem.full_description | safe | linebreaks}}
+  </div>
+  {% if problem.recommended_libraries.all %}
+    A feladat megoldásához ajánlott függvénykönyvtár:<br>
+      {% for library in problem.recommended_libraries.all %}
+        —  <a href="{{ library.url }}">{{ library.name }}:</a> {{ library.description }}<br>
+      {% endfor %}
+  {% endif %}
+  <div class="pt-4 pb-4 pl-2 text-secondary font-italic">
+    {% for source in problem.sources.all %}
+      {{ source }}
+    {% endfor %}
+  </div>
+  <div class="sidebar">
+    <form action="" method="post">
+      <div class="p-1 text-right">
+      {% for hint in hints %}
+        <button type="button" class="btn btn-secondary"
+          data-toggle="popover" title='Tipp #{{ hint.id }}'
+          data-placement="top"
+          data-content="{{ hint.explanation }}">
+          #{{hint.id}}
+        </button>
+      {% endfor %}
+      {% if user.is_authenticated%}
+        <button type="submit" onclick="Submit()" class="btn btn-success">
+          Beküldés
+        </button>
+      {% else %}
+        <span class="d-inline-block" data-toggle="popover" data-placement="top"  data-content="A beküldéshez regisztráció szükséges">
+          <button class="btn btn-success" style="pointer-events: none;" type="button" disabled>Beküldés</button>
+        </span>
+      {% endif %}
+      </div>
+      {% csrf_token %}
+      <div id="editor"></div>
+        {% csrf_token %}
+        {{ form.text }}
+    </form>
+  </div>
+</div>
+  {% load static %}
+  <script src="{% static 'js/when-ace-loaded.js' %}"></script>
+{% endblock %}

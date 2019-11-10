@@ -1,0 +1,47 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block extra_head_tags %}
+{% endblock extra_head_tags %}
+{% block style %}
+{% endblock style %}
+<link rel="stylesheet" href="{% static 'css/common.css' %}">
+{% if request.COOKIES.theme == 'dark' %}
+    <link rel="stylesheet" href="{% static 'css/darkly.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customDark.css' %}">
+{% else %}
+    <link rel="stylesheet" href="{% static 'css/flatly.css' %}">
+    <link rel="stylesheet" href="{% static 'css/customLight.css' %}">
+{% endif %}
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/ace.js" integrity="sha256-CVkji/u32aj2TeC+D13f7scFSIfphw2pmu4LaKWMSY8=" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/mode-python.js" integrity="sha256-MinL4s5SkQg5C0UzG79kKoTJMsTWOjdMX4v+i7bCPVI=" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/theme-xcode.js" integrity="sha256-jLrBzcgtXmwiAviu7yWHnlKYsdjqI5d7r5dEOlfaTW4=" crossorigin="anonymous"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.6/theme-dracula.js" integrity="sha256-CHRMSxTlo+Z7Cwa3NbDjlNpAV5cWPJh9sfrj9bPlx2s=" crossorigin="anonymous"></script>
+</head>
+<body>
+{% block content %}
+{% endblock content %}
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+    crossorigin="anonymous">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous">
+</script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous">
+</script>
+<script>
+    $(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+    });
+</script>
+{% block script %}
+{% endblock script %}
+</body>
+</html>

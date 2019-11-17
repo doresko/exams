@@ -159,13 +159,16 @@ input:checked + .slider:before {
 }
 
 .cards h1{
-  font-size: 35px;
+  font-size: 2em;
 }
 
 .cards h2{
-  font-size: 18px;
+  font-size: 1em;
 }
 
+.card-text{
+  font-size: 1em;
+}
 .notfound{
   position: relative;
   height: 90%;

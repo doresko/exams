@@ -7,12 +7,14 @@ from django.urls import reverse
 from django.template.defaultfilters import slugify
 
 class Tag(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=32, unique=True)
 
     def __str__(self):
         return(self.name)
   
 class PythonLibrary(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=64, unique=True)
     description = models.CharField(max_length=1024)
     url = models.TextField(max_length=256)
@@ -24,12 +26,14 @@ class PythonLibrary(models.Model):
         return(self.name)
 
 class Skill(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=64, unique=True)
 
     def __str__(self):
         return(self.name)
 
 class Level(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=64, unique=True, default="")
 
     def __str__(self):
@@ -37,24 +41,28 @@ class Level(models.Model):
 
 #Publications
 class Author(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
         return(self.name)
 
 class Publisher(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
         return(self.name)
 
 class Place(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     name = models.CharField(max_length=128, unique=True)
 
     def __str__(self):
         return(self.name)
 
 class Citation(models.Model):
+    creator = models.ForeignKey(User, null=True, blank=True, editable=False, on_delete = models.PROTECT)
     authors = models.ManyToManyField(Author, help_text='Szerzők')
     title = models.TextField(max_length=256)
     publisher = models.ForeignKey(Publisher, on_delete = models.PROTECT, blank=True, null=True)

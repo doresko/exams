@@ -19,12 +19,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '^a!a&!r(gc)_q!sd2b)j4z!c6n8+o*0d^u%p123v#m3@(y7(jw'
+SECRET_KEY = os.environ['SK']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-
-#SESSION_COOKIE_DOMAIN = ".127.0.0.1"
+DEBUG = False
 
 ALLOWED_HOSTS=['doresko.pythonanywhere.com', '127.0.0.1']
 
@@ -39,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'django.contrib.sitemaps',
     'django.contrib.staticfiles',
+    'django_extensions',
     'accounts',
     'exams',
 ]
@@ -146,3 +145,8 @@ STATIC_ROOT = '/home/doresko/exams/static'
 
 EMAIL_BACKEND = "django.core.mail.backends.filebased.EmailBackend"
 EMAIL_FILE_PATH = os.path.join(BASE_DIR, "sent_emails")
+
+GRAPH_MODELS = {
+  'all_applications': True,
+  'group_models': True,
+}

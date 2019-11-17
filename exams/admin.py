@@ -1,13 +1,10 @@
+from django.contrib.admin import ModelAdmin, SimpleListFilter
 from django.contrib import admin
 from exams.models import *
 from django.db.models import Q
 
 admin.site.site_header = "Példatár Alkalmazás"
 admin.site.site_title = "Példatár Alkalmazás"
-
-class TagInline(admin.TabularInline):
-    model = Problem.tags.through
-    extra = 3
 
 class PythonLibraryAdmin(admin.ModelAdmin):
     list_display = ['name', 'description', 'url']
@@ -40,29 +37,113 @@ class SnippetAdmin(admin.ModelAdmin):
 class HintInline(admin.TabularInline):
     model=Hint
     extra=1
+
+class OwnerFilter(SimpleListFilter):
+    title = 'Saját feladatok'
+    parameter_name = 'feladat'
+
+    def lookups(self, request, model_admin):
+        return [
+            ('own', 'Saját'),
+        ] 
+
+    def queryset(self, request, obj):
+        if self.value() == 'own':
+            return Problem.objects.filter(creator=request.user)
     
 class ProblemAdmin(admin.ModelAdmin):
     list_display = ['creator', 'title', 'short_description']
     inlines = [HintInline]
     prepopulated_fields = {'slug': ('title',)}
+    list_filter = (OwnerFilter, )
+
 
     def save_model(self, request, obj, form, change): 
         obj.creator = request.user
         obj.save()
 
-    def get_queryset(self, request):
-        qs = super(ProblemAdmin, self).get_queryset(request)
+    def has_change_permission(self, request, obj=None):
         if request.user.is_superuser:
-            return qs
+            return True
         else:
-            return qs.filter(creator=request.user)
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
 
-admin.site.register(Tag)
-admin.site.register(Skill)
-admin.site.register(Level)
-admin.site.register(Author)
-admin.site.register(Place)
-admin.site.register(Publisher)
+    def has_delete_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        if obj is not None and obj.creator != request.user:
+            return False
+        return True
+
+
+class TagAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+class SkillAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+class LevelAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+class AuthorAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+class PlaceAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+class PublisherAdmin(admin.ModelAdmin):
+
+    def has_change_permission(self, request, obj=None):
+        if request.user.is_superuser:
+            return True
+        else:
+            if obj is not None and obj.creator != request.user:
+                return False
+            return True
+
+admin.site.register(Tag, TagAdmin)
+admin.site.register(Skill, SkillAdmin)
+admin.site.register(Level, LevelAdmin)
+admin.site.register(Author, AuthorAdmin)
+admin.site.register(Place, PlaceAdmin)
+admin.site.register(Publisher, PublisherAdmin)
 admin.site.register(Snippet, SnippetAdmin)
 admin.site.register(Problem, ProblemAdmin)
 admin.site.register(Citation, CitationAdmin)
